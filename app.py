@@ -10,6 +10,14 @@ app = Flask(__name__)
 #1 = single search, 0 = multi search
 strCond = 0
 
+import re
+# as per recommendation from @freylis, compile once only
+CLEANR = re.compile('<.*?>') 
+
+def cleanhtml(raw_html):
+  cleantext = re.sub(CLEANR, '', raw_html)
+  return cleantext
+
 #natType
 country_options = {
 	"All Countries" : "",
@@ -67,9 +75,9 @@ def base():
 			
 			for m in matches:
 				formatted_matches.append({
-					"artist": m[1],
-					"song": m[2],
-					"id": m[0]
+					"song": cleanhtml(m[1]),
+					"artist": cleanhtml(m[2]),
+					"id": cleanhtml(m[0])
 					})
 
 	content = {
