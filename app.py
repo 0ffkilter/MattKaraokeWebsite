@@ -43,7 +43,6 @@ pat = re.compile("<td class=\"youtube_auto_search\" data-pro=\"(\\d+)\" data-tit
 
 @app.route("/", methods=["POST", "GET"])
 def base():
-	print("in base")
 	payload = {}
 
 	payload['SearchOrderItem'] = ''
