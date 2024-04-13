@@ -1,0 +1,30 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Matt's Karaoke Page</title>
+    </head>
+    <body>
+        <h1>Karaoke</h1>
+        <form action="/">
+            <select class="nat_select" name="country">
+                {% for option in country_options %}
+                    <option value="{{option}}" {% if nat_select == option %} SELECTED {% endif%}>{{option}}</option>"
+                {% endfor %}
+            </select>
+            <br><br>
+            <select class="search_select" name="search">
+                {% for search in search_options %}
+                    <option value="{{search}}" {% if search_select == search %} SELECTED {% endif%}>{{search}}</option>"
+                {% endfor %}
+            </select>
+            <br><br>
+            <label for="song_search">Search:</label>
+            <input type=text id="song_search" name="song_search">
+            <br><br>
+            <input type="submit" value="Submit">
+        </form>
+        {% for i in range(count) %}
+            <p>{{songs[i]}}</p>
+        {% endfor %}
+    </body>
+</html>
