@@ -1,28 +1,41 @@
 <!doctype html>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<!-- Latest compiled and minified CSS -->
 <html>
     <head>
         <title>Matt's Karaoke Page</title>
     </head>
     <body>
-        <h1>Karaoke</h1>
-        <form action="/">
-            <select class="nat_select" name="country">
-                {% for option in country_options %}
-                    <option value="{{option}}" {% if nat_select == option %} SELECTED {% endif%}>{{option}}</option>"
-                {% endfor %}
-            </select>
-            <br><br>
-            <select class="search_select" name="search">
-                {% for search in search_options %}
-                    <option value="{{search}}" {% if search_select == search %} SELECTED {% endif%}>{{search}}</option>"
-                {% endfor %}
-            </select>
-            <br><br>
-            <label for="song_search">Search:</label>
-            <input type=text id="song_search" name="song_search">
-            <br><br>
-            <input type="submit" value="Submit">
-        </form>
+        <div class="form-group">
+            <h1>Karaoke</h1>
+            <form action="/">
+                <label for="nat_select">Select Country</label>
+                <br>
+                <div class="form-group">
+                    <select class="nat_select" name="country">
+                        {% for option in country_options %}
+                            <option value="{{option}}" {% if nat_select == option %} SELECTED {% endif%}>{{option}}</option>"
+                        {% endfor %}
+                    </select>
+                </div>
+                <br><br>
+                <label for="song_search">Select Filter</label>
+                <br>
+                <div class="form-group">
+                    <select class="search_select" name="search">
+                        {% for search in search_options %}
+                            <option value="{{search}}" {% if search_select == search %} SELECTED {% endif%}>{{search}}</option>"
+                        {% endfor %}
+                    </select>
+                </div>
+                <br><br>
+                <label for="song_search">Search:</label>
+                <input type=text class="form-control" placeholder="Song Name" id="song_search" name="song_search">
+                <br><br>
+                <input type="submit" value="Submit">
+            </form>
+        </div>
         {% for i in range(count) %}
             <p>{{songs[i]}}</p>
         {% endfor %}
