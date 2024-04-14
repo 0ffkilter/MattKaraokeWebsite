@@ -41,24 +41,26 @@
                 <br>
                 {%if songs|length > 0 %}
                     <h2>Results</h2>
-
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th scope="col">ID</th>
-                                <th scope="col">Song</th>
-                                <th scope="col">Artist</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {% for i in range(count) %}
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
                                 <tr>
-                                    <td>{{songs[i]["id"]}}</td>
-                                    <td>{{songs[i]["song"]}}</td>
-                                    <td>{{songs[i]["artist"]}}</td>
-                            {% endfor %}
-                        </tbody>
-                    </table>
+                                    <th scope="col">ID</th>
+                                    <th scope="col">Song</th>
+                                    <th scope="col">Artist</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for i in range(count) %}
+                                    <tr>
+                                        <td>{{songs[i]["id"]}}</td>
+                                        <td>{{songs[i]["song"]}}</td>
+                                        <td>{{songs[i]["artist"]}}</td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
                 {% endif %}
                 </div>
         </div>
