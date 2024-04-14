@@ -22,7 +22,7 @@ def cleanhtml(raw_html):
 #natType
 country_options = {
 	"All Countries" : "",
-	"US-Pop" : "ENG",
+	"US" : "ENG",
 	"Korea": "KOR",
 	"Japan": "JPN",
 	"China": "CHN",
