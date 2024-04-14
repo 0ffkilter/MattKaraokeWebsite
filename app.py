@@ -63,7 +63,14 @@ def base():
 			nat_select = request.args['country']
 
 		if "search" in request.args and request.args['search'] != "":
-			payload['strType'] = search_options[request.args['search']]
+			option_number = search_options[request.args['search']]
+			payload['strType'] = option_number
+			if option_number == "":
+				for i in range(5):
+					payload['strSize0%i' %(i)] = 100
+			else:
+				payload['strSize0%s' %(option_number)] = 100
+
 			search_select = request.args['search']
 
 		if "song_search" in request.args and request.args["song_search"] != "":
@@ -76,11 +83,16 @@ def base():
 
 			matches = pat.findall(page.content.decode("utf-8", errors='ignore'))
 
+			ids = set()
 			for m in matches:
-				formatted_matches.append({
+				song_id = cleanhtml(m[0])
+				
+				if song_id not in ids:
+					ids.add(song_id)
+					formatted_matches.append({
 					"song": cleanhtml(m[1]),
 					"artist": cleanhtml(m[2]),
-					"id": cleanhtml(m[0])
+					"id": song_id
 					})
 
 	content = {
