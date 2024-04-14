@@ -3,6 +3,7 @@ import re
 from flask import Flask
 from flask import render_template
 from flask import request
+import json
 
 app = Flask(__name__)
 
@@ -67,11 +68,14 @@ def base():
 
 		if "song_search" in request.args and request.args["song_search"] != "":
 			payload['strText'] = request.args['song_search']
-			page = requests.post("https://www.tjmedia.com/tjsong/song_search_list.asp", payload)
+			page = requests.post("https://www.tjmedia.com/tjsong/song_search_list.asp",
+				  payload,
+				  headers={'Content-Type': 'application/x-www-form-urlencoded; charset=euc-kr'})
 
-			matches = pat.findall(page.text)
-			print(matches)
-			
+			page.encoding="euc-kr"
+
+			matches = pat.findall(page.content.decode("utf-8", errors='ignore'))
+
 			for m in matches:
 				formatted_matches.append({
 					"song": cleanhtml(m[1]),
